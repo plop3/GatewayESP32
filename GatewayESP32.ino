@@ -47,7 +47,7 @@
 
 // Set the hostname for the WiFi Client. This is the hostname
 // passed to the DHCP server if not static.
-#define MY_HOSTNAME "ESP32_GW"
+#define MY_HOSTNAME "gwLora"
 
 // Enable MY_IP_ADDRESS here if you want a static ip address (no DHCP)
 #define MY_IP_ADDRESS 192,168,0,100
@@ -79,6 +79,8 @@
 
 void setup()
 {
+  ArduinoOTA.setHostname("gwLora");
+  
 	// Setup locally attached sensors
 	ArduinoOTA.onStart([]() {
 		Serial.println("Start updating");
@@ -113,6 +115,7 @@ void setup()
 void presentation()
 {
 	// Present locally attached sensors here
+  sendSketchInfo("GW LoRa", "2.0");
 }
 
 void loop()
